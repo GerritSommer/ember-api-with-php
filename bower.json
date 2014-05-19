@@ -1,0 +1,15 @@
+{
+  "name": "drdirks",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "libs"
+  ],
+  "dependencies": {
+    "slim"            : "https://github.com/codeguy/Slim.git#2.4.3",
+    "php-activerecord": "https://github.com/jpfuentes2/php-activerecord.git"
+  }
+}

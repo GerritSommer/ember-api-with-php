@@ -1,0 +1,14 @@
+{
+  "name": "php-activerecord",
+  "homepage": "https://github.com/jpfuentes2/php-activerecord",
+  "version": "1.1.2",
+  "_release": "1.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.1.2",
+    "commit": "7a2d46f5692846546579ab64ef7339d4e032879a"
+  },
+  "_source": "https://github.com/jpfuentes2/php-activerecord.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/jpfuentes2/php-activerecord.git"
+}
