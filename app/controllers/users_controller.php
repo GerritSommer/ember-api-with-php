@@ -1,17 +1,30 @@
 <?php
 
-class Users_controller extends app_controller {
+class UsersController {
 
   protected $models = array('user');
 
   public function index() {
-    $data['users'] = User::find('all');
-    return $data;
+    $users = User::find('all');
+
+    $json = json_encode(
+      array(User::table_name() =>
+        array_map(function($res){
+          return $res->to_array();
+        }, $users))
+    );
+    return $json;
   }
-  public function show() {
-    if(isset($_GET['id'])) { $data['user'] = User::find($_GET['id']); }
-    return $data;
+
+
+  public function show($id) {
+    $user = User::find(1);
+    $root =  ActiveRecord\Utils::singularize(User::table_name());
+    $json = json_encode(array($root => $user->to_array()));
+
+    return $json;
   }
+
   public function create() {
     if(isset($_POST['name']) and isset($_POST['password']) and isset($_POST['role'])) {
       $user = new User(array('name' => $_POST['name'], 'password' => $_POST['password'], 'role' => $_POST['role']));
