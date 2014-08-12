@@ -1,5 +1,7 @@
 <?php
-class User extends ActiveRecord\Model {
+
+
+class User extends BaseModel {
   static $validates_presence_of = array(array('name'), array('role'));
 
   public function __toString() { return 'user'. $this->name; }
