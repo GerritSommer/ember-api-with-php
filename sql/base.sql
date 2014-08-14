@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS base.users (
 INSERT INTO base.users (`id`, `name`, `password`, `role`) VALUES
 (1, 'admin user', 'pw', 'admin');
 
-CREATE TABLE IF NOT EXISTS base.users (
+CREATE TABLE IF NOT EXISTS base.articles (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `title` varchar(40) NOT NULL,
   `body` TEXT NOT NULL,
