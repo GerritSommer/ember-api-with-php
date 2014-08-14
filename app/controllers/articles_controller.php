@@ -9,7 +9,7 @@ class ArticlesController {
   }
 
   public function show($id) {
-    $article = Article::find(1);
+    $article = Article::find($id);
     $json = $article->to_json();
     return $json;
   }

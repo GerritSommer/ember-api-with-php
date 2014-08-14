@@ -9,7 +9,7 @@ class UsersController {
   }
 
   public function show($id) {
-    $user = User::find(1);
+    $user = User::find($id);
     $json = $user->to_json();
     return $json;
   }
