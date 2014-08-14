@@ -16,5 +16,6 @@ This README outlines the details of collaborating on this Ember application.
 
 ## Usage
 
+* add the domain of your frontend site to `Access-Control-Allow-Origin` in initialize.php
 * simply run `grunt` to process the files
 * The php files will be compiled to `dist` folder, where your domain should link to
