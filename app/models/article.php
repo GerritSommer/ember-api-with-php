@@ -1,2 +1,5 @@
 <?php
-class Article extends ActiveRecord\Model {}
+class Article extends BaseModel {
+
+  public function __toString() { return 'article: '. $this->title; }
+}

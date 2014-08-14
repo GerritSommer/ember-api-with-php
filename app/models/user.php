@@ -1,6 +1,4 @@
 <?php
-
-
 class User extends BaseModel {
   static $validates_presence_of = array(array('name'), array('role'));
 

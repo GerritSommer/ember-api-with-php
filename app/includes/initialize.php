@@ -65,4 +65,9 @@ spl_autoload_register(function ($class_name) {
     }
   }
 });
+// load all routes
+foreach (glob("routes/*") as $filename) {
+  require_once $filename;
+}
+
 

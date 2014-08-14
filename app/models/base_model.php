@@ -1,5 +1,4 @@
 <?php
-
 class BaseModel extends ActiveRecord\Model {
   public function to_json(array $options=array()) {
     $root =  ActiveRecord\Utils::singularize(self::table_name());
