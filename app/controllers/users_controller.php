@@ -9,31 +9,61 @@ class UsersController {
   }
 
   public function show($id) {
-    $user = User::find(1);
-    $json = $user->to_json();
-    return $json;
+    try {
+      $user = User::find($id);
+    } catch (Exception $e) {
+      $error = [ 'message' => $e->getMessage() ];
+      $e instanceof ActiveRecord\RecordNotFound ? $error['error_code'] = 404 : $error['error_code'] = 400;
+    }
+    if(isset($error)) {
+      return $error;
+    } else {
+      return $user->to_json();
+    }
   }
 
   public function create($params) {
-    $user = User::create($params);
-    $root =  ActiveRecord\Utils::singularize(User::table_name());
-    $json = json_encode(array($root => $user->to_array()));
-    return $json;
+    try {
+      $user = User::create($params);
+    } catch (Exception $e) {
+      $error = [ 'message' => $e->getMessage(), 'error_code' => 400 ];
+    }
+    if(isset($error)) {
+      return $error;
+    } else {
+      $root =  ActiveRecord\Utils::singularize(User::table_name());
+      $json = json_encode(array($root => $user->to_array()));
+      return $json;
+    }
+
   }
 
   public function update($id, $params) {
-    $user = User::find($id);
-    $user->update_attributes($params);
-    $updated_user = User::find($id);
-    $json = $updated_user->to_json();
-    return $json;
-  }
+    try {
+      $user = User::find($id);
+      $user->update_attributes($params);
+    } catch (Exception $e) {
+      $error = [ 'message' => $e->getMessage(), 'error_code' => 400 ];
+    }
+    if(isset($error)) {
+      return $error;
+    } else {
+     $json = $user->to_json();
+     return $json;
+   }
+ }
 
   public function delete($id) {
-    $user = User::find($id);
-    $user->delete();
-    return true;
+    try {
+      $user = User::find($id);
+      $user->delete();
+    } catch (Exception $e) {
+      $error = [ 'message' => $e->getMessage(), 'error_code' => 400 ];
+    }
+    if(isset($error)) {
+      return $error;
+    } else {
+      return true;
+    }
   }
 }
-
-?>

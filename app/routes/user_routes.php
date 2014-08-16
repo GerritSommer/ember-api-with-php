@@ -7,27 +7,48 @@ $app->get('/users/', function() use ($app) {
 
 $app->get('/users/:id', function ($id) use ($app) {
   $controller = new UsersController;
-  $json = $controller->show($id);
-  echo $json;
+  $result = $controller->show($id);
+  if (is_array($result)) {
+    $app->response()->status($result);
+    $app->response()->header('X-Status-Reason', $result['message']);
+  } else {
+    echo $result;
+  }
 });
 
 $app->post('/users/', function() use ($app) {
   $controller = new UsersController;
   $params = $app->request()->getBody()['user'];
-  $json = $controller->create($params);
-  echo $json;
+  $result = $controller->create($params);
+
+  if (is_array($result)) {
+    $app->response()->status($result);
+    $app->response()->header('X-Status-Reason', $result['message']);
+  } else {
+    echo $result;
+  }
 });
 
 $app->put('/users/:id', function($id) use ($app) {
   $controller = new UsersController;
   $params = $app->request()->getBody()['user'];
-  $json = $controller->update($id, $params);
-  echo $json;
+  $result = $controller->update($id, $params);
+
+  if (is_array($result)) {
+    $app->response()->status($result);
+    $app->response()->header('X-Status-Reason', $result['message']);
+  } else {
+    echo $result;
+  }
 });
 
 $app->delete('/users/:id', function($id) use ($app) {
   $controller = new UsersController;
-  if($controller->delete($id)) {
-    echo 200;
+  $result = $controller->delete($id);
+  if (is_array($result)) {
+    $app->response()->status($result);
+    $app->response()->header('X-Status-Reason', $result['message']);
+  } else {
+    $app->response()->status(200);
   }
 });
